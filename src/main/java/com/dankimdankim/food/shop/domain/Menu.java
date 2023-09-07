@@ -71,18 +71,23 @@ public class Menu {
 	}
 
 	public void validateOrder(String menuName, List<OptionGroup> optionGroups) {
-		if (!this.name.equals(menuName))
-			throw new IllegalArgumentException("기본 상품이 변경되었습니다.");
+		if (!this.name.equals(menuName)) {
+			throw new IllegalArgumentException("기본 상품이 변경됐습니다.");
+		}
 
-		if (!isSatisfiedBy(optionGroups))
-			throw new IllegalArgumentException("매뉴가 변경되었습니다.");
+		if (!isSatisfiedBy(optionGroups)) {
+			throw new IllegalArgumentException("메뉴가 변경됐습니다.");
+		}
 	}
 
 	private boolean isSatisfiedBy(List<OptionGroup> cartOptionGroups) {
-		return cartOptionGroups.stream().anyMatch(this::isSatisfiedBy);
+		boolean flag = cartOptionGroups.stream().anyMatch(this::isSatisfiedBy);
+		return flag;
 	}
 
 	private boolean isSatisfiedBy(OptionGroup group) {
-		return optionGroupSpecs.stream().anyMatch(spec -> spec.isSatisfiedBy(group));
+
+		boolean flag = optionGroupSpecs.stream().anyMatch(spec -> spec.isSatisfiedBy(group));
+		return flag;
 	}
 }
