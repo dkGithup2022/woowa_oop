@@ -69,4 +69,8 @@ public class Shop {
 	public Money calculateCommissionFee(Money price) {
 		return commissionRate.of(price);
 	}
+
+	public boolean isValidOrderAmount(Money money) {
+		return money.isGreaterThanOrEqual(minOrderAmount);
+	}
 }
